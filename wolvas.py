@@ -1,19 +1,21 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[68]:
 
 
-
+import requests
+import io
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException
 import time
 import random
 
 
-# In[2]:
+# In[69]:
 
 
 def sleep_rand():
@@ -21,7 +23,7 @@ def sleep_rand():
     return random_sleep
 
 
-# In[3]:
+# In[70]:
 
 
 def nb_modele(driver):
@@ -29,7 +31,7 @@ def nb_modele(driver):
     return int(nombre)
 
 
-# In[4]:
+# In[91]:
 
 
 def modele_volks():
@@ -40,20 +42,27 @@ def modele_volks():
     wait = WebDriverWait(driver, 10)
     nombre_de_modele = nb_modele(driver)
     for i in range(1,nombre_de_modele+1):
+        time.sleep(sleep_rand())
         modele = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="MOFA"]/div/div/div/div/div[2]/div/div[2]/ul/li[{}]/div[2]/div[2]/a'.format(i))))
         modele.click()
         nb_modele_local = nb_modele(driver)
         for j in range(1,nb_modele_local+1):
+            #try:
+                #quiter_aide = wait.until(EC.presence_of_element_located((By.XPATH,'//*[@id="meetdeal-minimize-button-color"]')))
+                #quiter_aide.click()
+            #except NoSuchElementException:        
+                #pass
             modele_local = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="MOFA"]/div/div/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[{}]/div/li/div[1]/div[2]/div[2]/a'.format(j))))
             modele_local.click()
             wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="MOFA"]/div/div/div/div/div/div/div/div/section[2]/div/div/div[2]/div[1]/div[2]')))
-            time.sleep(2)
-            caracteristiques=driver.find_element(by=By.XPATH, value='//*[@id="MOFA"]/div/div/div/div/div/div/div/div/section[2]/div/div/div[2]/div[1]/div[2]').text 
             time.sleep(sleep_rand())
-            #prix= driver.find_element(by=By.XPATH, value='//*[@id="MOFA"]/div/div/div/div/div/div/div/div[2]/section[2]/div/div/div[3]/div[2]/div/div/div[1]/div[2]/span').text
-            #image = driver.find_element(by=By.XPATH, value='//*[@id="MOFA"]/div/div/div/div/div/div/div/div[2]/section[1]/div/div/div/div/div/div/div[1]/div[2]/img').pnj
+            caracteristiques=driver.find_element(by=By.XPATH, value='//*[@id="MOFA"]/div/div/div/div/div/div/div/div/section[2]/div/div/div[2]/div[1]/div[2]').text 
+            prix= driver.find_element(by=By.XPATH, value='//*[@id="MOFA"]/div/div/div/div/div/div/div/div[2]/section[1]/div/footer/div[2]/div/div/div[1]/div[2]/span').text
+            element = driver.find_element(by=By.XPATH, value='//*[@id="MOFA"]/div/div/div/div/div/div/div/div[2]/section[1]/div/div/div/div/div/div/div[1]/div[2]/img')
+            image = element.get_attribute('src')
             print(caracteristiques)
-            #print(prix)
+            print(prix)
+            print(image)
             time.sleep(sleep_rand())
             driver.back()
             time.sleep(4)
@@ -70,7 +79,7 @@ def modele_volks():
     return
 
 
-# In[5]:
+# In[93]:
 
 
 modele_volks()
@@ -79,7 +88,9 @@ modele_volks()
 # In[ ]:
 
 
-
+(/*[@id="MOFA"]/div/div/div/div/div/div/div/div[2]/section[1]/div/footer/div[2]/div/div/div[1]/div[2]/span)
+(/*[@id="MOFA"]/div/div/div/div/div/div/div/div[2]/section[1]/div/footer/div[2]/div/div/div[1]/div[2]/span)
+(/*[@id="MOFA"]/div/div/div/div/div/div/div/div[2]/section[1]/div/footer/div[2]/div/div/div[1]/div[2]/span)
 
 
 # In[ ]:
@@ -160,8 +171,68 @@ modele_toyota()
 (/*[@id="tor-cle7pi2uu1g2l16ojfrqs1npe"]/div[3]/div[2]/div[3]/article[2]/button[2])
 
 
+# In[82]:
+
+
+def modele_dacia():
+    driver = webdriver.Chrome()
+    driver.get("https://www.dacia.fr/achat-vehicules-neufs.html?colorMarketing.hexaCode=000000&energy.group=DIESEL%2CESS%2CELECTRIC&engine.powerOutputHp=45-110&transmission.group=MANUAL%2CAUTOMATIC&vehicleClassification=NC")
+    wait = WebDriverWait(driver, 10)
+    wait.until(EC.presence_of_element_located((By.XPATH,'//*[@id="onetrust-accept-btn-handler"]')))
+    accepter = driver.find_element(by=By.XPATH, value='//*[@id="onetrust-accept-btn-handler"]')
+    accepter.click()
+    nombre = driver.find_element(by=By.XPATH, value='//*[@id="Page"]/div[2]/div[1]/div/main/div[2]/h1').text
+    nombre_modele = int(''.join(filter(str.isdigit, nombre)))
+    #print(nombre_modele)
+    for i in range(1,nombre_modele+1):
+        modele = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="Page"]/div[2]/div[1]/div/main/div[4]/div[{}]/div[2]/button'.format(i))))
+        modele.click()
+        time.sleep(4)
+        wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="Page"]/div[2]/div[1]/div/div[2]/div[1]/div/h1')))
+        time.sleep(2)
+        caracteristiques = driver.find_element(by=By.XPATH, value='//*[@id="Page"]/div[2]/div[1]/div/div[2]/div[1]/div/h1').text
+        try:
+            puissance = driver.find_element(by=By.XPATH, value='//*[@id="Page"]/div[2]/div[3]/div/div[2]/ul/li[5]/span').text
+        except NoSuchElementException:        
+            puissance = driver.find_element(by=By.XPATH, value='//*[@id="Page"]/div[2]/div[3]/div/div[2]/ul/li[6]/span').text
+        #prix = driver.find_element(by=By.XPATH, value='//*[@id="Page"]/div[2]/div[1]/div/div[2]/div[4]/div[1]/div[2]/div/text()').text
+        print(caracteristiques)
+        print(puissance)
+        #print(prix)
+        time.sleep(sleep_rand())
+        driver.back()
+        time.sleep(4)
+
+
+# In[52]:
+
+
+modele_dacia()
+
+
 # In[ ]:
 
 
+#page 1
+#//*[@id="Page"]/div[2]/div[1]/div/main/div[4]/div[1]/div[2]/button
+#//*[@id="Page"]/div[2]/div[1]/div/main/div[4]/div[2]/div[2]/button
+(/*[@id="Page"]/div[2]/div[1]/div/main/div[4]/div[24]/div[2]/button)
+#page 2
+#//*[@id="Page"]/div[2]/div[1]/div/main/div[3]/div[1]/div[2]/button
+#//*[@id="Page"]/div[2]/div[1]/div/main/div[3]/div[2]/div[2]/button
+#page 3
+(/*[@id="Page"]/div[2]/div[1]/div/main/div[3]/div[1]/div[2]/button)
+(/*[@id="Page"]/div[2]/div[1]/div/main/div[3]/div[1]/div[2]/button)
+(/*[@id="Page"]/div[2]/div[1]/div/main/div[3]/div[24]/div[2]/button)
 
+(/*[@id="Page"]/div[2]/div[1]/div/main/div[3]/div[1]/div[2]/button)
+(/*[@id="Page"]/div[2]/div[1]/div/main/div[3]/div[24]/div[2]/button)
+
+(/*[@id="Page"]/div[2]/div[1]/div/main/div[3]/div[19]/div[2]/button)
+#bouton changer de page
+#//*[@id="Page"]/div[2]/div[1]/div/main/div[5]/div/ul/li[7]/button
+
+#nb de page
+#//*[@id="Page"]/div[2]/div[1]/div/main/div[4]/div/ul/li[6]/button
+#//*[@id="Page"]/div[2]/div[1]/div/main/div[5]/div/ul/li[8]/button
 
