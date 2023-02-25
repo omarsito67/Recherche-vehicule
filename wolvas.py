@@ -31,7 +31,7 @@ def nb_modele(driver):
     return int(nombre)
 
 
-# In[91]:
+# In[110]:
 
 
 def modele_volks():
@@ -39,6 +39,9 @@ def modele_volks():
     driver.get("https://www.volkswagen.fr/fr/configurateur.html?---=%7B%22filter-service%22%3A%22%2F%3FbodyType%3DCitadines%26bodyType%3DSportives%26bodyType%3DCabriolets%26bodyType%3DBerlines%26bodyType%3DBreaks%252FShooting%2BBrakes%26bodyType%3DSUV%26bodyType%3DMonospaces%26bodyType%3DUtilitaires%26engineType%3DEssence%26engineType%3DElectrique%26engineType%3DDiesel%26engineType%3DHybride%2Brechargeable%26gearType%3DAutomatique%26gearType%3DManuelle%22%7D")
     accepter = driver.find_element(by=By.XPATH, value='//*[@id="bannerAcceptButton"]')
     accepter.click()
+    time.sleep(13)
+    quiter_aide = driver.find_element(by=By.XPATH, value='//*[@id="meetdeal-minimize-button-color"]')
+    quiter_aide.click()
     wait = WebDriverWait(driver, 10)
     nombre_de_modele = nb_modele(driver)
     for i in range(1,nombre_de_modele+1):
@@ -47,22 +50,25 @@ def modele_volks():
         modele.click()
         nb_modele_local = nb_modele(driver)
         for j in range(1,nb_modele_local+1):
-            #try:
-                #quiter_aide = wait.until(EC.presence_of_element_located((By.XPATH,'//*[@id="meetdeal-minimize-button-color"]')))
-                #quiter_aide.click()
-            #except NoSuchElementException:        
-                #pass
             modele_local = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="MOFA"]/div/div/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[{}]/div/li/div[1]/div[2]/div[2]/a'.format(j))))
             modele_local.click()
             wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="MOFA"]/div/div/div/div/div/div/div/div/section[2]/div/div/div[2]/div[1]/div[2]')))
             time.sleep(sleep_rand())
             caracteristiques=driver.find_element(by=By.XPATH, value='//*[@id="MOFA"]/div/div/div/div/div/div/div/div/section[2]/div/div/div[2]/div[1]/div[2]').text 
-            prix= driver.find_element(by=By.XPATH, value='//*[@id="MOFA"]/div/div/div/div/div/div/div/div[2]/section[1]/div/footer/div[2]/div/div/div[1]/div[2]/span').text
-            element = driver.find_element(by=By.XPATH, value='//*[@id="MOFA"]/div/div/div/div/div/div/div/div[2]/section[1]/div/div/div/div/div/div/div[1]/div[2]/img')
-            image = element.get_attribute('src')
             print(caracteristiques)
+            prix= driver.find_element(by=By.XPATH, value='//*[@id="MOFA"]/div/div/div/div/div/div/div/div[2]/section[1]/div/footer/div[2]/div/div/div[1]/div[2]/span').text
             print(prix)
-            print(image)
+            try:
+                element = driver.find_element(by=By.XPATH, value='//*[@id="MOFA"]/div/div/div/div/div/div/div/div[2]/section[1]/div/div/div/div/div/div/div[1]/div[2]/img')
+                image = element.get_attribute('src')
+                print(image)
+            except NoSuchElementException:        
+                try:
+                    element = driver.find_element(by=By.XPATH, value='//*[@id="MOFA"]/div/div/div/div/div/div/div/div[2]/section[1]/div/div/div/div/div/img')
+                    image = element.get_attribute('src')
+                    print(image)
+                except NoSuchElementException:
+                    pass
             time.sleep(sleep_rand())
             driver.back()
             time.sleep(4)
@@ -79,7 +85,7 @@ def modele_volks():
     return
 
 
-# In[93]:
+# In[109]:
 
 
 modele_volks()
@@ -96,7 +102,9 @@ modele_volks()
 # In[ ]:
 
 
-
+(/*[@id="MOFA"]/div/div/div/div/div/div/div/div[2]/section[1]/div/div/div/div/div/img)
+(/*[@id="MOFA"]/div/div/div/div/div/div/div/div[2]/section[1]/div/div/div/div/div/div/div[1]/div[2]/img)
+(/*[@id="MOFA"]/div/div/div/div/div/div/div/div[2]/section[1]/div/div/div/div/div/img)
 
 
 # In[ ]:
