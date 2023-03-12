@@ -11,10 +11,15 @@ Les données récolté sont les suivantes : Prix, Modèle, Puissance, Classe é
 La présentation du code sera découpé en plusieurs parties pour faciliter la compréhension :
 
 Partie 1 : WebScraping pour Volkswagen. 
+
 Partie 2 : WebScraping pour Dacia. 
+
 Partie 3 : WebScraping pour Porsche. 
+
 Partie 4 : Fonction de l’utilisateur. 
+
 Partie 5 : Mail récapitulatif.      
+
 Partie 6 : Interface web. 
 
 Partie 1/2/3:
