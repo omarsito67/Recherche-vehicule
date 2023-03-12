@@ -321,12 +321,6 @@ L'équipe AutoScope"""
     return
 
 
-# In[176]:
-
-
-mail()
-
-
 # # Fonction d'exécution de la recherche
 
 # In[166]:
