@@ -72,6 +72,17 @@ Affichage des véhicules les plus recherchés ou les plus vendus pour aider les 
 Redirection de l'utilisateur vers le paiement via notre site pour une expérience de recherche et d'achat plus fluide.
 Création de comptes Autoscope gratuits pour collecter des données sur les préférences des utilisateurs et ainsi améliorer notre offre.
 
+# Pour faire fonctionner l'outil:
+Pour utiliser efficacement cet outil, il est important de disposer de Python sur votre ordinateur. Ensuite, vous devrez compiler les codes de Web Scraping qui sont contenus dans les fichiers pour récupérer les listes nécessaires à l'analyse. Une fois que vous avez importé ces listes, vous pouvez compiler le fichier "projet.py" en le plaçant sur votre machine.
+
+L'outil est interactif et vous posera plusieurs questions afin de déterminer les modèles les plus adaptés à vos besoins. Une fois que vous aurez répondu à toutes les questions, il vous fournira les résultats appropriés.
+
+Il est important de noter que lors de l'utilisation de l'outil de Web Scraping, vous pourriez rencontrer des problèmes avec certaines fonctions. En effet, l'ajout ou la modification de nouveaux modèles sur les sites peut entraîner des erreurs inattendues.
+
+Pour ouvrir la page Web, vous devez télécharger le dossier sur votre ordinateur. Ensuite, ouvrez le fichier "index.html" avec votre navigateur Web.
+
+
+
 # Projet réalisé par:
 Gallouch Omar
 Ghamlouche Mehdi
