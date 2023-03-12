@@ -16,7 +16,7 @@ Les données récolté sont les suivantes : Prix, Modèle, Puissance, Classe é
 
 
 
-La présentation du code sera découpé en plusieurs parties pour faciliter la compréhension :
+# La présentation du code sera découpé en plusieurs parties pour faciliter la compréhension :
 
 Partie 1 : WebScraping pour Volkswagen. 
 
