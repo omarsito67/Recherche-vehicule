@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+            <meta charset="UTF-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+            <title>AutoScope</title>
+             <!-- cette premiere ligne ci est utilisee pour integrer le Boostrap a notre page html afin que celle-ci soit responsive(S'adapte sur tout type d'appareils)-->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+            <!--Cette ligne permet de creer la connexion avec le code css-->
+            <link href="style.css" rel="stylesheet">
+    </head>
+
+    <body>
+            <!--Ici c'est la balise nav a laquelle on applique une classe de Boostrap :bg-light pour dire que la couleur de fond du nav sera light c'est-a-dire qui tend vers le blanc -->
+            <nav class="navbar navbar-light bg-light">
+                <!--Ici le menu est constitue des images-->
+                <a class="navbar-brand" href="#">
+                <img  class ="menu" src="image/logo.jpg " width="200" height="180" alt="logo width="30 height="30" class="d-inline-block align-top" alt="">
+                </a>
+
+                <a class="navbar-brand" href="#">
+                <img   class ="menu" src="image/car1.jpg "   width="200" height="180" alt="logo width="30 height="30" class="d-inline-block align-top" alt="">
+                </a>
+
+                <a class="navbar-brand" href="#">
+                <img   class ="menu" src="image/car2.jpg " width="200" height="180" alt="logo width="30 height="30" class="d-inline-block align-top" alt="">
+                </a>
+            
+                <a class="navbar-brand" href="#">
+                <img   class ="menu"  src="image/car3.jpg" width="200" height="180" alt="logo width="30 height="30" class="d-inline-block align-top" alt="">
+                </a>
+            </nav>
+            <!--Ici c'est une classe dont le css est contenu dans le fichier style.css-->
+            <div class="transition"></div>
+
+            <!--Ici c'est une classe dont le css est contenu dans le fichier style.css-->
+            <div class ="cover">
+                <!--Voici la zone pour la Recherche de la voiture. Toutes les classes utilisees ici sont les classes Boostrap-->
+                <section class="vh-100 gradient-custom">
+
+                    <div class="container py-5 h-100">
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+                            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                                <div class="card bg-dark  text-primary" style="border-radius: 1rem;">
+                                    <div class="card-body p-5 text-center">
+                                        <div class="mb-dmd-5 mt-md-4 pb-5">
+                                            <!--Voici le lien qui conduit a la partie inscription-->
+                                            <div class="inscription">
+                                                <a href="#fin">Inscrivez-vous</a>
+                                            </div>
+                                            <br> <br>
+                                            <h5 class="fw-bold mb-2 text-uppercase">Recherche une voiture</h5>  <!-- Ici le texte sera en gras et en majuscule-->
+                                            <h5 class="text-light">Marques disponibles à ce jour</h5> <!-- Text light,info sont des classes pour gerer les couleurs des ecrits-->
+                                            <h6 class="text-info">Dacia Porsche Volsvagen</h6> 
+                                            <div class="form-outline form-white mb-4">
+                                                <label class="form-label">Prix ?</label>
+                                                <input name="nom" placeholder="Prix" class="form-control form-control-lg" required/>
+                                            </div>
+                                            <div class="form-outline form-white mb-4">
+                                                <label class="form-label">Puissance ?</label>
+                                                <input name="prenom" placeholder="Puissance" class="form-control form-control-lg" required/>
+                                             </div>
+
+                                             <div class="form-outline form-white mb-4">
+                                                <label class="form-label">Marque ?</label>
+                                                <input name="prenom" placeholder="marque" class="form-control form-control-lg" required/>
+                                             </div>
+
+                                             <div class="form-outline form-white mb-4">
+                                                <label class="form-label">Boîte ?</label>
+                                               <select class="form-control form-control-lg">
+                                                   <option>Manuelle</option>
+                                                   <option>automatique</option>
+                                               </select>
+                                            </div>  
+
+                                            <div class="form-outline form-white mb-4">
+                                               <label class="form-label">Carburant ?</label>
+                                               <select class="form-control form-control-lg" required>
+                                                   <option>Essence</option>
+                                                   <option>100% électrique</option>
+                                                   <option>Diesel</option>
+                                                   <option>Hybride</option>
+                                            
+                                               </select>
+                                            </div>
+                        
+                                            <button class="btn btn-outline-light btn-lg px-5" type="submit">Rechercher</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </section>
+            </div>
+                
+        </div>
+
+        <footer>
+            
+            <div id="fin">
+                <img  class ="menu" src="image/logo.jpg " width="130" height="80" alt="logo width="30 height="30" class="d-inline-block align-top" alt="">
+                <p class="text-success">A la prochaine Mise A jour, il y aura plus de fonctionnalités, plus de marques disponibles.</p>
+                <!--Ici c'est un formulaire html pour l'inscription-->
+                <form>
+                        <table >
+                            <tr>
+                                <td><label> Nom</label></td>
+                                <td> <input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td><label> Prenom</label></td>
+                                <td> <input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Date</label></td>
+                                <td> <input type="date"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><input type="button" value="INSCRIPTION"/></td>
+                            </tr>
+                        </table>
+
+                </form>
+                <br><br>  
+            </div>
+            
+        </footer>
+        
+    </body>
+</html>
