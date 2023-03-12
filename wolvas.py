@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[4]:
+# In[94]:
 
 
 import requests
+import re
 import io
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -13,9 +14,10 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 import time
 import random
+import pickle
 
 
-# In[5]:
+# In[95]:
 
 
 def sleep_rand():
@@ -23,7 +25,7 @@ def sleep_rand():
     return random_sleep
 
 
-# In[6]:
+# In[96]:
 
 
 def nb_modele(driver):
@@ -31,7 +33,14 @@ def nb_modele(driver):
     return int(nombre)
 
 
-# In[110]:
+# In[97]:
+
+
+final_list_volks=[]
+liste_image_volks=[]
+
+
+# In[98]:
 
 
 def modele_volks():
@@ -40,8 +49,11 @@ def modele_volks():
     accepter = driver.find_element(by=By.XPATH, value='//*[@id="bannerAcceptButton"]')
     accepter.click()
     time.sleep(13)
-    quiter_aide = driver.find_element(by=By.XPATH, value='//*[@id="meetdeal-minimize-button-color"]')
-    quiter_aide.click()
+    try:
+        quiter_aide = driver.find_element(by=By.XPATH, value='//*[@id="meetdeal-minimize-button-color"]')
+        quiter_aide.click()
+    except NoSuchElementException:
+        pass
     wait = WebDriverWait(driver, 10)
     nombre_de_modele = nb_modele(driver)
     for i in range(1,nombre_de_modele+1):
@@ -52,20 +64,59 @@ def modele_volks():
         for j in range(1,nb_modele_local+1):
             modele_local = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="MOFA"]/div/div/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[{}]/div/li/div[1]/div[2]/div[2]/a'.format(j))))
             modele_local.click()
+            time.sleep(sleep_rand())
             wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="MOFA"]/div/div/div/div/div/div/div/div/section[2]/div/div/div[2]/div[1]/div[2]')))
             time.sleep(sleep_rand())
-            caracteristiques=driver.find_element(by=By.XPATH, value='//*[@id="MOFA"]/div/div/div/div/div/div/div/div/section[2]/div/div/div[2]/div[1]/div[2]').text 
-            print(caracteristiques)
-            prix= driver.find_element(by=By.XPATH, value='//*[@id="MOFA"]/div/div/div/div/div/div/div/div[2]/section[1]/div/footer/div[2]/div/div/div[1]/div[2]/span').text
-            print(prix)
+            caracteristiques=driver.find_element(by=By.XPATH, value='//*[@id="MOFA"]/div/div/div/div/div/div/div/div/section[2]/div/div/div[2]/div[1]/div[2]').text
+            if caracteristiques.find("GTE") != -1:
+                cara = caracteristiques.split(';')
+                model=""
+                for caractere in cara[0]:
+                    if not caractere.isdigit():
+                        model += caractere
+                    else:
+                        break
+                model.strip()
+                carbu = "Hybride"
+                Boite = "Automatique"
+                pp = re.search(r'\b(\d+)\s*CH\b', cara[0])
+                puissance = int(pp.group(1))
+                classe_energetique = cara[5].split('\n')[1]
+            else:
+                cara = caracteristiques.split(';')
+                if cara[0].find("BVM") != -1:
+                    Boite = "Manuelle"
+                else:
+                    Boite = "Automatique"
+                carbu = cara[1].replace(" ", "")
+                pp = re.search(r'\b(\d+)\s*CH\b', cara[0])
+                puissance = int(pp.group(1))
+                model=""
+                for caractere in cara[0]:
+                    if not caractere.isdigit():
+                        model += caractere
+                    else:
+                        break
+                model.strip()
+                classe_energetique = cara[3].split('\n')[1]
+            try:
+                price= driver.find_element(by=By.XPATH, value='//*[@id="MOFA"]/div/div/div/div/div/div/div/div[2]/section[1]/div/footer/div[2]/div/div/div[1]/div[2]/span').text
+            except NoSuchElementException: 
+                price= driver.find_element(by=By.XPATH, value='//*[@id="MOFA"]/div/div/div/div/div/div/div/div[2]/section[1]/div/footer/div/div/div/div[1]/div[2]').text
+            prix = int(''.join(filter(str.isdigit, price)))
+            voiture={"modèle":model,"prix":prix,"boîte de vitesse":Boite,"puissance":puissance,"carburant":carbu,"classe énergétique":classe_energetique}
+            print(voiture)
+            final_list_volks.append(voiture)
             try:
                 element = driver.find_element(by=By.XPATH, value='//*[@id="MOFA"]/div/div/div/div/div/div/div/div[2]/section[1]/div/div/div/div/div/div/div[1]/div[2]/img')
                 image = element.get_attribute('src')
+                liste_image_volks.append(image)
                 print(image)
             except NoSuchElementException:        
                 try:
                     element = driver.find_element(by=By.XPATH, value='//*[@id="MOFA"]/div/div/div/div/div/div/div/div[2]/section[1]/div/div/div/div/div/img')
                     image = element.get_attribute('src')
+                    liste_image_volks.append(image)
                     print(image)
                 except NoSuchElementException:
                     pass
@@ -82,11 +133,21 @@ def modele_volks():
                         time.sleep(2)
                     
         driver.back()
-    return
+    return(final_list_volks,liste_image_volks)
 
 
-# In[109]:
+# In[99]:
 
 
 modele_volks()
+
+
+# In[100]:
+
+
+# Enregistrement de la liste dans un fichier
+with open("final_list_volks.pickle", "wb") as f:
+    pickle.dump(final_list_volks, f)
+with open("liste_image_volks.pickle", "wb") as f:
+    pickle.dump(liste_image_volks, f)
 
