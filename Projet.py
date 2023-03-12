@@ -7,8 +7,6 @@
 
 
 import nbimporter
-import wolvas
-import porch
 import pickle
 import smtplib
 from email.mime.text import MIMEText
@@ -323,10 +321,10 @@ L'équipe AutoScope"""
     return
 
 
-# In[175]:
+# In[176]:
 
 
-#mail()
+mail()
 
 
 # # Fonction d'exécution de la recherche
@@ -362,16 +360,4 @@ def choix():
 
 
 choix()
-
-
-# In[168]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
