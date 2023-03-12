@@ -10,12 +10,12 @@ Les données récolté sont les suivantes : Prix, Modèle, Puissance, Classe é
 
 La présentation du code sera découpé en plusieurs parties pour faciliter la compréhension :
 
-Partie 1 : WebScraping pour Volkswagen
-Partie 2 : WebScraping pour Dacia
-Partie 3 : WebScraping pour Porsche
-Partie 4 : Fonction de l’utilisateur
-Partie 5 : Mail récapitulatif 
-Partie 6 : Interface web
+Partie 1 : WebScraping pour Volkswagen. 
+Partie 2 : WebScraping pour Dacia. 
+Partie 3 : WebScraping pour Porsche. 
+Partie 4 : Fonction de l’utilisateur. 
+Partie 5 : Mail récapitulatif.      
+Partie 6 : Interface web. 
 
 Partie 1/2/3:
 Les fichiers suivants "wolvas.py", "porsche.py" et "modele_dacia.py" regroupent les 3 premières parties, le WebScraping. Pour ce faire, nous avons commencé par accéder à la page et accepter les cookies. Ensuite, nous avons fermé la fenêtre d'aide si elle était affichée. Nous avons également récupéré le nombre de pages et le nombre de modèles de voitures disponibles sur chaque page à l'aide de Xpath. Nous avons mis ces informations dans des boucles pour parcourir toutes les pages et extraire les données de chaque modèle de voiture.Pour extraire les données, nous avons utilisé la méthode split pour traiter les chaînes de caractères et stocker les données dans des dataframes. Les données ont été stockées sous forme de listes, car il était impossible d'attendre une heure à chaque fois pour récupérer les listes et effectuer une recherche. Il convient de noter que notre outil doit être mis à jour régulièrement, car de nouveaux modèles apparaissent fréquemment et le code de la page peut également être modifié. Ces limites sont claires pour notre outil.
