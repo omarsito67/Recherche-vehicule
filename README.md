@@ -50,7 +50,7 @@ Ensuite on definit la fonction choix() qui va demander à l'utilisateur s'il sou
 # Partie 6:
 
 Nous avons voulu créer une interface web pour notre outil de recherche. Cependant, en raison de nos connaissances limitées en matière de développement web, nous n'avons pas été en mesure de créer une interface fonctionnelle. Nous avons toutefois créé un aperçu de ce à quoi pourrait ressembler notre page web.
-Dans le fichier "..." se trouve notre code HTML et CSS. Dans notre HTML, nous avons utilisé plusieurs liens Bootstrap qui nous ont été utiles pour rendre la page responsive et ne pas avoir à créer de flexbox, ajouter des classes prédéfinies de couleur et donc "styliser" notre page en utilisant des regles CSS pré-écrite etc. Le reste du code HTML a été réalisé en reprenant le code d'une autre page web réalisée en licence.
+Dans le dossier "Voiture_PageWeb" se trouve notre code HTML et CSS. Dans notre HTML, nous avons utilisé plusieurs liens Bootstrap qui nous ont été utiles pour rendre la page responsive et ne pas avoir à créer de flexbox, ajouter des classes prédéfinies de couleur et donc "styliser" notre page en utilisant des regles CSS pré-écrite etc. Le reste du code HTML a été réalisé en reprenant le code d'une autre page web réalisée en licence.
 
 # Les difficultés rencontrées:
 
@@ -71,6 +71,17 @@ Ajout de critères de recherche supplémentaires pour affiner les résultats.
 Affichage des véhicules les plus recherchés ou les plus vendus pour aider les utilisateurs dans leur choix.
 Redirection de l'utilisateur vers le paiement via notre site pour une expérience de recherche et d'achat plus fluide.
 Création de comptes Autoscope gratuits pour collecter des données sur les préférences des utilisateurs et ainsi améliorer notre offre.
+
+# Pour faire fonctionner l'outil:
+Pour utiliser efficacement cet outil, il est important de disposer de Python sur votre ordinateur. Ensuite, vous devrez compiler les codes de Web Scraping qui sont contenus dans les fichiers pour récupérer les listes nécessaires à l'analyse. Une fois que vous avez importé ces listes, vous pouvez compiler le fichier "projet.py" en le plaçant sur votre machine.
+
+L'outil est interactif et vous posera plusieurs questions afin de déterminer les modèles les plus adaptés à vos besoins. Une fois que vous aurez répondu à toutes les questions, il vous fournira les résultats appropriés.
+
+Il est important de noter que lors de l'utilisation de l'outil de Web Scraping, vous pourriez rencontrer des problèmes avec certaines fonctions. En effet, l'ajout ou la modification de nouveaux modèles sur les sites peut entraîner des erreurs inattendues.
+
+Pour ouvrir la page Web, vous devez télécharger le dossier sur votre ordinateur. Ensuite, ouvrez le fichier "index.html" avec votre navigateur Web.
+
+
 
 # Projet réalisé par:
 Gallouch Omar
