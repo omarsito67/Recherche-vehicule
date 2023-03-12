@@ -50,7 +50,7 @@ Ensuite on definit la fonction choix() qui va demander à l'utilisateur s'il sou
 # Partie 6:
 
 Nous avons voulu créer une interface web pour notre outil de recherche. Cependant, en raison de nos connaissances limitées en matière de développement web, nous n'avons pas été en mesure de créer une interface fonctionnelle. Nous avons toutefois créé un aperçu de ce à quoi pourrait ressembler notre page web.
-Dans le fichier "..." se trouve notre code HTML et CSS. Dans notre HTML, nous avons utilisé plusieurs liens Bootstrap qui nous ont été utiles pour rendre la page responsive et ne pas avoir à créer de flexbox, ajouter des classes prédéfinies de couleur et donc "styliser" notre page en utilisant des regles CSS pré-écrite etc. Le reste du code HTML a été réalisé en reprenant le code d'une autre page web réalisée en licence.
+Dans le dossier "Voiture_PageWeb" se trouve notre code HTML et CSS. Dans notre HTML, nous avons utilisé plusieurs liens Bootstrap qui nous ont été utiles pour rendre la page responsive et ne pas avoir à créer de flexbox, ajouter des classes prédéfinies de couleur et donc "styliser" notre page en utilisant des regles CSS pré-écrite etc. Le reste du code HTML a été réalisé en reprenant le code d'une autre page web réalisée en licence.
 
 # Les difficultés rencontrées:
 
